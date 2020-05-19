@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.yguilai.com</id>
+    <title>燕归来博客</title>
+    <updated>2020-05-19T07:23:29.211Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://blog.yguilai.com"/>
+    <link rel="self" href="https://blog.yguilai.com/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://blog.yguilai.com/images/avatar.png</logo>
+    <icon>https://blog.yguilai.com/favicon.ico</icon>
+    <rights>All rights reserved 2020, 燕归来博客</rights>
+</feed>
