@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.yguilai.com</id>
     <title>燕归来博客</title>
-    <updated>2020-05-19T07:25:22.983Z</updated>
+    <updated>2020-05-19T07:55:10.649Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.yguilai.com"/>
     <link rel="self" href="https://blog.yguilai.com/atom.xml"/>
@@ -10,4 +10,143 @@
     <logo>https://blog.yguilai.com/images/avatar.png</logo>
     <icon>https://blog.yguilai.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 燕归来博客</rights>
+    <entry>
+        <title type="html"><![CDATA[ElementUI自定义上传 -以上传图标到七牛云为例]]></title>
+        <id>https://blog.yguilai.com/post/elementui-zi-ding-yi-shang-chuan-yi-shang-chuan-tu-biao-dao-qi-niu-yun-wei-li/</id>
+        <link href="https://blog.yguilai.com/post/elementui-zi-ding-yi-shang-chuan-yi-shang-chuan-tu-biao-dao-qi-niu-yun-wei-li/">
+        </link>
+        <updated>2020-05-19T07:30:51.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-html">&lt;template&gt;
+    &lt;div&gt;
+        &lt;el-upload
+            action=&quot;#&quot;
+            class=&quot;icon-uploader&quot;
+            :auto-upload=&quot;false&quot;
+            :on-change=&quot;onIcoUploadChange&quot;
+            :show-file-list=&quot;false&quot;
+            accept=&quot;image/*&quot;
+          &gt;
+            &lt;img v-if=&quot;imageUrl !== ''&quot; :src=&quot;imageUrl&quot; class=&quot;ico&quot; /&gt;
+            &lt;i v-else class=&quot;el-icon-plus&quot; /&gt;
+            &lt;div slot=&quot;tip&quot; class=&quot;el-upload__tip&quot;&gt;
+              只能上传图片文件，且不超过200kb
+            &lt;/div&gt;
+          &lt;/el-upload&gt;
+          &lt;el-button @click=&quot;upload()&quot;&gt;上传&lt;/el-button&gt;
+    &lt;/div&gt;
+&lt;/ template&gt;
+
+&lt;script&gt;
+export default {
+    data() {
+        return {
+            icoFile: null,
+            imageUrl: '',
+            qiniuToken: ''
+        }
+    },
+    methods: {
+        // 获取上传的文件对象
+        onIcoUploadChange(file, fileList) {
+            this.icoFile = file
+            // 创建一个本地blob链接用于图片预览
+            this.imageUrl = URL.createObjectURL(file.raw)
+        },
+        // 上传文件到七牛
+        async upload() {
+            if (this.icoFile === null) {
+                this.$message.error('请先上传文件')
+                return
+            }
+
+            // 判断token是否为空
+            if (this.qiniuToken === '') {
+                try {
+                const { data } = await getQiniuToken()
+                this.qiniuToken = data
+                } catch (err) {
+                this.$message.error(err.message)
+                return
+                }
+            }
+
+            let fileKey = ''
+
+            try {
+                const formData = new FormData()
+                formData.append('file', this.icoFile)
+                formData.append('token', this.qiniuToken)
+                const { key } = await uploadImg2Qiniu(formData)
+                fileKey = key
+                // 发送请求 将key存到数据库
+                // ...
+            } catch (err) {
+                this.$message.error(err.message)
+            }
+        }
+    }
+}
+&lt;/script&gt;
+
+&lt;style lang=&quot;scss&quot; scope&gt;
+$icoSize: 64px;
+
+.icon-uploader .el-upload {
+  width: $icoSize;
+  height: $icoSize;
+  position: relative;
+  overflow: hidden;
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  &amp;:hover {
+    border-color: #409eff;
+  }
+}
+
+.icon-uploader .ico {
+  width: $icoSize;
+  height: $icoSize;
+}
+
+.icon-uploader .el-upload .el-icon-plus {
+  width: $icoSize;
+  height: $icoSize;
+  font-size: 20px;
+  color: #8c939d;
+  line-height: $icoSize;
+  text-align: center;
+}
+&lt;/style&gt;
+</code></pre>
+<p>获取token及上传图片</p>
+<pre><code class="language-js">import request from '@/utils/request'
+
+// 获取后端生成的token
+export function getQiniuToken() {
+  return request({
+    url: '/qntoken',
+    method: 'GET'
+  })
+}
+
+export function uploadImg2Qiniu(formdata) {
+  return request({
+    // 该api从七牛获取, 不同地域的存储桶对应api不同
+    url: process.env.VUE_APP_QINIU_UPLOAD_API, 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    withCredentials: false, // 禁止跨域携带cookie，带cookie在七牛上有可能出现跨域问题
+    timeout: 30000,
+    data: formdata
+  })
+}
+</code></pre>
+]]></content>
+    </entry>
 </feed>
