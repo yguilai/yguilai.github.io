@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="https://blog.yguilai.com/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content="温故而知新"><meta charset="UTF-8"><title>关于 | 燕归来博客</title>
+<link rel="shortcut icon" href="https://blog.yguilai.com/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content="温故而知新"><meta charset="UTF-8"><title>Go日志库Zap与lumberjack配置 | 燕归来博客</title>
 <link href="https://blog.yguilai.com/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://blog.yguilai.com/media/css/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://blog.yguilai.com/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 <script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
 
-<link rel="canonical" href="https://blog.yguilai.com/about/" />
+<link rel="canonical" href="https://blog.yguilai.com/L_yuiYNgS/" />
 </head>
 <body>
 <div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
@@ -23,17 +23,106 @@
 
 <div class="main"><div class="main-inner"><div class="content">
 <article class="post">
-<h2 class="post_title sm_margin"><a>关于</a></h2>
+<h2 class="post_title sm_margin"><a>Go日志库Zap与lumberjack配置</a></h2>
 <script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
-<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2019-01-25</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px"></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">1 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-05-19</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px"></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">303字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">2 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
 </section>
 
 <div style="display:flex">
 <div class="md_block" id="md_block">
 <div class="round-shape-one"></div>
-<blockquote>
-<p>Welcome</p>
-</blockquote>
+<pre><code class="language-go">package core
+
+import (
+	&quot;go-gin-api-example/core/global&quot;
+	&quot;go.uber.org/zap&quot;
+	&quot;go.uber.org/zap/zapcore&quot;
+	&quot;gopkg.in/natefinch/lumberjack.v2&quot;
+	&quot;os&quot;
+)
+
+var logConfig = global.CONFIG.Log
+
+func initZapLogger() {
+	var logger *zap.Logger
+	core := zapcore.NewCore(newZapEncoder(), newWriteSyncer(), newZapLevel())
+
+	// set initialize fields
+	field := zap.Fields(zap.String(&quot;ApplicationName&quot;, global.CONFIG.App.Name))
+
+	// judge current environment is pro?
+	if global.CONFIG.App.Env != &quot;pro&quot; {
+		// enable dev mode
+		caller := zap.AddCaller()
+		development := zap.Development()
+		logger = zap.New(core, caller, development, field)
+	} else {
+		logger = zap.New(core, field)
+	}
+
+	// save as a global variable
+	global.LOG = logger
+}
+
+func newWriteSyncer() zapcore.WriteSyncer {
+	if logConfig.EnableLogFile {
+		return zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout))
+	} else {
+		hook := lumberjack.Logger{
+			Filename:   logConfig.File.Path,
+			MaxSize:    logConfig.File.MaxSize,
+			MaxBackups: logConfig.File.MaxBackups,
+			MaxAge:     logConfig.File.MaxAge,
+			Compress:   logConfig.File.Compress,
+		}
+		return zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout), zapcore.AddSync(&amp;hook))
+	}
+}
+
+func newZapEncoder() zapcore.Encoder {
+	encoderCfg := zapcore.EncoderConfig{
+		TimeKey:        &quot;time&quot;,
+		LevelKey:       &quot;level&quot;,
+		NameKey:        &quot;logger&quot;,
+		CallerKey:      &quot;linenum&quot;,
+		MessageKey:     &quot;msg&quot;,
+		StacktraceKey:  &quot;stacktrace&quot;,
+		LineEnding:     zapcore.DefaultLineEnding,
+		EncodeLevel:    zapcore.LowercaseLevelEncoder,  // 小写编码器
+		EncodeTime:     zapcore.ISO8601TimeEncoder,     // ISO8601 UTC 时间格式
+		EncodeDuration: zapcore.SecondsDurationEncoder, //
+		EncodeCaller:   zapcore.FullCallerEncoder,      // 全路径编码器
+		EncodeName:     zapcore.FullNameEncoder,
+	}
+
+	if logConfig.Encoder == &quot;json&quot; {
+		return zapcore.NewJSONEncoder(encoderCfg)
+	} else {
+		return zapcore.NewConsoleEncoder(encoderCfg)
+	}
+}
+
+func newZapLevel() zap.AtomicLevel {
+	levelMap := map[string]zapcore.Level{
+		&quot;DEBUG&quot;:  zap.DebugLevel,
+		&quot;INFO&quot;:   zap.InfoLevel,
+		&quot;WARN&quot;:   zap.WarnLevel,
+		&quot;ERROR&quot;:  zap.ErrorLevel,
+		&quot;DPANIC&quot;: zap.DPanicLevel,
+		&quot;PANIC&quot;:  zap.PanicLevel,
+		&quot;FATAL&quot;:  zap.FatalLevel,
+	}
+
+	level := zap.NewAtomicLevel()
+	if l, ok := levelMap[logConfig.Level]; ok {
+		level.SetLevel(l)
+	} else {
+		level.SetLevel(zap.InfoLevel)
+	}
+
+	return level
+}
+</code></pre>
 
 <span id="footnote"></span>
 <div id = "warn"></div>
@@ -55,7 +144,7 @@ if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop)
 var list=document.querySelectorAll(".katex");for(var i=0;i<list.length;i++){list[i].style.display="unset"};
 var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
 var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
-content="本文最后更新于2019-01-25，已超过 1 年没有更新，涉及的内容可能已经失效！";var date1="2019-01-25 19:09:48";date1=date1.replace("-","/");var date2=new Date();var date3=date2.getTime()-new Date(date1).getTime();var days=Math.floor(date3/(24*3600*1000));if(days>=365){document.getElementById("warn").innerHTML=content};
+content="本文最后更新于2020-05-19，已超过 1 年没有更新，涉及的内容可能已经失效！";var date1="2020-05-19 22:20:02";date1=date1.replace("-","/");var date2=new Date();var date3=date2.getTime()-new Date(date1).getTime();var days=Math.floor(date3/(24*3600*1000));if(days>=365){document.getElementById("warn").innerHTML=content};
 </script>
 <style>#magnifyImg{position:fixed;left:0;top:0;text-align:center;width:100%;display:none;z-index:9999}#magnifyImg img{object-fit:contain;background:#eaecef;padding:15px;border-radius:10px;height:auto;width:auto;vertical-align:middle}</style>
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/yguilai"title="github"><i class="iconfont icon-github"></i></a></div></div><div class="copyright"id="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>&nbsp;&nbsp;<a href="#" target="_blank">湘ICP备18009312号-3</a>Copyright © 2018-2020 <a href="https://blog.yguilai.com" style="margin:0;">燕归来博客</a>.</div>

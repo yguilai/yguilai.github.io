@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.yguilai.com</id>
     <title>燕归来博客</title>
-    <updated>2020-05-19T09:13:08.595Z</updated>
+    <updated>2020-05-19T14:21:05.784Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.yguilai.com"/>
     <link rel="self" href="https://blog.yguilai.com/atom.xml"/>
@@ -10,6 +10,106 @@
     <logo>https://blog.yguilai.com/images/avatar.png</logo>
     <icon>https://blog.yguilai.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 燕归来博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Go日志库Zap与lumberjack配置]]></title>
+        <id>https://blog.yguilai.com/L_yuiYNgS/</id>
+        <link href="https://blog.yguilai.com/L_yuiYNgS/">
+        </link>
+        <updated>2020-05-19T14:20:02.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-go">package core
+
+import (
+	&quot;go-gin-api-example/core/global&quot;
+	&quot;go.uber.org/zap&quot;
+	&quot;go.uber.org/zap/zapcore&quot;
+	&quot;gopkg.in/natefinch/lumberjack.v2&quot;
+	&quot;os&quot;
+)
+
+var logConfig = global.CONFIG.Log
+
+func initZapLogger() {
+	var logger *zap.Logger
+	core := zapcore.NewCore(newZapEncoder(), newWriteSyncer(), newZapLevel())
+
+	// set initialize fields
+	field := zap.Fields(zap.String(&quot;ApplicationName&quot;, global.CONFIG.App.Name))
+
+	// judge current environment is pro?
+	if global.CONFIG.App.Env != &quot;pro&quot; {
+		// enable dev mode
+		caller := zap.AddCaller()
+		development := zap.Development()
+		logger = zap.New(core, caller, development, field)
+	} else {
+		logger = zap.New(core, field)
+	}
+
+	// save as a global variable
+	global.LOG = logger
+}
+
+func newWriteSyncer() zapcore.WriteSyncer {
+	if logConfig.EnableLogFile {
+		return zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout))
+	} else {
+		hook := lumberjack.Logger{
+			Filename:   logConfig.File.Path,
+			MaxSize:    logConfig.File.MaxSize,
+			MaxBackups: logConfig.File.MaxBackups,
+			MaxAge:     logConfig.File.MaxAge,
+			Compress:   logConfig.File.Compress,
+		}
+		return zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout), zapcore.AddSync(&amp;hook))
+	}
+}
+
+func newZapEncoder() zapcore.Encoder {
+	encoderCfg := zapcore.EncoderConfig{
+		TimeKey:        &quot;time&quot;,
+		LevelKey:       &quot;level&quot;,
+		NameKey:        &quot;logger&quot;,
+		CallerKey:      &quot;linenum&quot;,
+		MessageKey:     &quot;msg&quot;,
+		StacktraceKey:  &quot;stacktrace&quot;,
+		LineEnding:     zapcore.DefaultLineEnding,
+		EncodeLevel:    zapcore.LowercaseLevelEncoder,  // 小写编码器
+		EncodeTime:     zapcore.ISO8601TimeEncoder,     // ISO8601 UTC 时间格式
+		EncodeDuration: zapcore.SecondsDurationEncoder, //
+		EncodeCaller:   zapcore.FullCallerEncoder,      // 全路径编码器
+		EncodeName:     zapcore.FullNameEncoder,
+	}
+
+	if logConfig.Encoder == &quot;json&quot; {
+		return zapcore.NewJSONEncoder(encoderCfg)
+	} else {
+		return zapcore.NewConsoleEncoder(encoderCfg)
+	}
+}
+
+func newZapLevel() zap.AtomicLevel {
+	levelMap := map[string]zapcore.Level{
+		&quot;DEBUG&quot;:  zap.DebugLevel,
+		&quot;INFO&quot;:   zap.InfoLevel,
+		&quot;WARN&quot;:   zap.WarnLevel,
+		&quot;ERROR&quot;:  zap.ErrorLevel,
+		&quot;DPANIC&quot;: zap.DPanicLevel,
+		&quot;PANIC&quot;:  zap.PanicLevel,
+		&quot;FATAL&quot;:  zap.FatalLevel,
+	}
+
+	level := zap.NewAtomicLevel()
+	if l, ok := levelMap[logConfig.Level]; ok {
+		level.SetLevel(l)
+	} else {
+		level.SetLevel(zap.InfoLevel)
+	}
+
+	return level
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ElementUI自定义上传 -以上传图标到七牛云为例]]></title>
         <id>https://blog.yguilai.com/elementui-zi-ding-yi-shang-chuan-yi-shang-chuan-tu-biao-dao-qi-niu-yun-wei-li/</id>
