@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.yguilai.com</id>
     <title>燕归来博客</title>
-    <updated>2020-05-20T03:16:06.008Z</updated>
+    <updated>2020-05-20T12:13:46.065Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.yguilai.com"/>
     <link rel="self" href="https://blog.yguilai.com/atom.xml"/>
@@ -10,6 +10,24 @@
     <logo>https://blog.yguilai.com/images/avatar.png</logo>
     <icon>https://blog.yguilai.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 燕归来博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Win10解决无法调节屏幕亮度问题]]></title>
+        <id>https://blog.yguilai.com/post/TKVP2Etmw/</id>
+        <link href="https://blog.yguilai.com/post/TKVP2Etmw/">
+        </link>
+        <updated>2020-05-20T12:00:17.000Z</updated>
+        <summary type="html"><![CDATA[<p>网上找了很多方法, 如: 重装集显驱动、修改注册表, 都没用</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>网上找了很多方法, 如: 重装集显驱动、修改注册表, 都没用</p>
+<!-- more -->
+<p>如果安装了TeamViewer, 向日葵之类的远程控制软件, 会自动安装监视器驱动</p>
+<p>解决办法:<br>
+Win+R打开运行窗口, 输入<code>devmgmt.msc</code>, 回车打开设备管理器面板, 找到监视器</p>
+<p>可以发现监视器驱动显示为<code>PnP-Monitor(Standard)</code> (厂商为TeamViewer) 或者<code>Generic Monitor (orayOPMS)</code>(厂商为向日葵)<br>
+<img src="https://blog.yguilai.com/post-images/1589976540518.jpg" alt="" loading="lazy"></p>
+<p>右键选中对应驱动, 打开<code>属性</code> &gt; <code>驱动程序</code> &gt; <code>更新驱动程序</code> &gt; <code>浏览计算机以查找驱动程序软件</code> &gt; <code>从计算机的设备驱动程序列表中选取</code> &gt; 选中<code>通用即插即用监视器</code>, 点击下一步安装即可, 最好重启一下电脑</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Go日志库Zap与lumberjack配置]]></title>
         <id>https://blog.yguilai.com/post/L_yuiYNgS/</id>
