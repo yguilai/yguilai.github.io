@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.yguilai.com</id>
     <title>燕归来博客</title>
-    <updated>2020-05-20T12:13:46.065Z</updated>
+    <updated>2020-05-27T07:43:40.667Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.yguilai.com"/>
     <link rel="self" href="https://blog.yguilai.com/atom.xml"/>
@@ -10,6 +10,37 @@
     <logo>https://blog.yguilai.com/images/avatar.png</logo>
     <icon>https://blog.yguilai.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 燕归来博客</rights>
+    <entry>
+        <title type="html"><![CDATA[yarn create react-app 报错文件名、目录名或卷标语法不正确]]></title>
+        <id>https://blog.yguilai.com/post/x1hPVO9h_/</id>
+        <link href="https://blog.yguilai.com/post/x1hPVO9h_/">
+        </link>
+        <updated>2020-05-27T07:29:09.000Z</updated>
+        <summary type="html"><![CDATA[<p>最近学习react, 看官方文档利用yarn新建项目运行<code>yarn create react-app my-app</code>直接报错</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>最近学习react, 看官方文档利用yarn新建项目运行<code>yarn create react-app my-app</code>直接报错</p>
+<!-- more -->
+<p>看网上解决办法很多都是修改<code>create-react-app.cmd</code>, 然后添加环境变量, 感觉很不<code>优雅</code></p>
+<p>查了很多资料后, 发现主要原因是我用npm全局安装的yarn, 导致yarn的bin目录与安装目录在不同分区🙄</p>
+<p>查看yarn的bin目录</p>
+<pre><code class="language-bash">yarn global bin
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://blog.yguilai.com/post-images/1590565038111.png" alt="" loading="lazy"></figure>
+<p>查看yarn的安装目录</p>
+<pre><code class="language-bash">yarn global dir
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://blog.yguilai.com/post-images/1590565172092.png" alt="" loading="lazy"></figure>
+<blockquote>
+<p>这里是我已经修改了的, 原来是在C盘</p>
+</blockquote>
+<p>如果发现bin目录与安装目录不在同一个分区, 就将yarn的安装位置修改到同一分区</p>
+<pre><code class="language-bash">yarn config set global-folder &quot;D:\Develop\yarn\global&quot;
+yarn config set cache-folder &quot;D:\Develop\yarn\cache&quot;
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://blog.yguilai.com/post-images/1590565331006.png" alt="" loading="lazy"></figure>
+<p>再运行<code>yarn create react-app my-app</code>可以发现已经搞定了👌</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Win10解决无法调节屏幕亮度问题]]></title>
         <id>https://blog.yguilai.com/post/TKVP2Etmw/</id>
