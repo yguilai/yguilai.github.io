@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="https://blog.yguilai.com/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content="温故而知新"><meta charset="UTF-8"><title>Win10解决无法调节屏幕亮度问题 | 燕归来博客</title>
+<link rel="shortcut icon" href="https://blog.yguilai.com/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content="温故而知新"><meta charset="UTF-8"><title>Typescript中补充的六个类型 | 燕归来博客</title>
 <link href="https://blog.yguilai.com/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://blog.yguilai.com/media/css/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://blog.yguilai.com/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 <script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
 
-<link rel="canonical" href="https://blog.yguilai.com/post/TKVP2Etmw/" />
+<link rel="canonical" href="https://blog.yguilai.com/post/zpYjIzrB_/" />
 </head>
 <body>
 <div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
@@ -23,27 +23,85 @@
 
 <div class="main"><div class="main-inner"><div class="content">
 <article class="post">
-<h2 class="post_title sm_margin"><a>Win10解决无法调节屏幕亮度问题</a></h2>
+<h2 class="post_title sm_margin"><a>Typescript中补充的六个类型</a></h2>
 <script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
-<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-05-20</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://blog.yguilai.com/tag/zixpeIzkI/" class="tag">Win10</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">198字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">1 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-06-01</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://blog.yguilai.com/tag/nh-9Ei0Bc/" class="tag">ts</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">359字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">2 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
 </section>
 
 <div style="display:flex">
 <div class="md_block" id="md_block">
 <div class="round-shape-one"></div>
-<p>网上找了很多方法, 如: 重装集显驱动、修改注册表, 都没用</p>
 <!-- more -->
-<p>如果安装了TeamViewer, 向日葵之类的远程控制软件, 会自动安装监视器驱动</p>
-<p>解决办法:<br>
-Win+R打开运行窗口, 输入<code>devmgmt.msc</code>, 回车打开设备管理器面板, 找到监视器</p>
-<p>可以发现监视器驱动显示为<code>PnP-Monitor(Standard)</code> (厂商为TeamViewer) 或者<code>Generic Monitor (orayOPMS)</code>(厂商为向日葵)<br>
-<img src="https://blog.yguilai.com/post-images/1589976540518.jpg" alt="" loading="lazy"></p>
-<p>右键选中对应驱动, 打开<code>属性</code> &gt; <code>驱动程序</code> &gt; <code>更新驱动程序</code> &gt; <code>浏览计算机以查找驱动程序软件</code> &gt; <code>从计算机的设备驱动程序列表中选取</code> &gt; 选中<code>通用即插即用监视器</code>, 点击下一步安装即可, 最好重启一下电脑</p>
+<h4 id="元组">元组</h4>
+<ul>
+<li>元组可以看作是数组的拓展, 它表示已知的元素数量和类型的数组</li>
+<li>通过<code>let tuple: [string, number, boolean]</code>的方式定义</li>
+<li>各个位置上的元素类型都要对应, 元素个数也要一致</li>
+</ul>
+<h4 id="枚举">枚举</h4>
+<ul>
+<li>ts在es原有类型鸡出上加入枚举类型</li>
+</ul>
+<h4 id="any">Any</h4>
+<ul>
+<li>程序有时是多变的, 有时我们在编写代码时并不能清楚的知道一个值到底时什么类型, 这个时候就需要用到any类型, eg: <code>let dom: any = document.getElementById('myId')</code></li>
+<li>可以在定义数组类型时使用any来指定数组中的元素类型为任意类型</li>
+<li>不应该滥用any类型, 如果任何值都指定为any类型, 那么typescript就变成了&quot;anyscript&quot;😂</li>
+</ul>
+<h4 id="void">void</h4>
+<ul>
+<li>void和any相反, any表示任意类型, void则是表示没有任意类型</li>
+<li>定义函数, 没有返回值时常用到</li>
+<li>void类型的变量只能赋值为<code>undefined</code>和<code>null</code></li>
+</ul>
+<h4 id="nerver">nerver</h4>
+<ul>
+<li>never类型指那些永不存在的类型</li>
+<li>除它自身外, 任何类型都不能赋值给never类型</li>
+</ul>
+<h4 id="unknown">unknown</h4>
+<ul>
+<li>unknown和any很像, 但是unknown相对与any是安全的</li>
+</ul>
+<h4 id="拓展类型">拓展类型</h4>
+<ul>
+<li>交叉类型
+<ul>
+<li>使用<code>&amp;</code>符号定义, 被<code>&amp;</code>符号链接的多个类型构成一个交叉类型</li>
+</ul>
+</li>
+<li>联合类型
+<ul>
+<li>联合类型是要求是要符合联合类型中任意一种类型即可, 使用<code>|</code>符号定义</li>
+</ul>
+</li>
+</ul>
 
 <span id="footnote"></span>
 <div id = "warn"></div>
 </div>
-<div class="toc-container"></div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%85%83%E7%BB%84">元组</a></li>
+<li><a href="#%E6%9E%9A%E4%B8%BE">枚举</a></li>
+<li><a href="#any">Any</a></li>
+<li><a href="#void">void</a></li>
+<li><a href="#nerver">nerver</a></li>
+<li><a href="#unknown">unknown</a></li>
+<li><a href="#%E6%8B%93%E5%B1%95%E7%B1%BB%E5%9E%8B">拓展类型</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="fullPage"><canvas id="canvas"></canvas></div>
 </article>
@@ -60,7 +118,7 @@ if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop)
 var list=document.querySelectorAll(".katex");for(var i=0;i<list.length;i++){list[i].style.display="unset"};
 var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
 var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
-content="本文最后更新于2020-05-20，已超过 1 年没有更新，涉及的内容可能已经失效！";var date1="2020-05-20 20:00:17";date1=date1.replace("-","/");var date2=new Date();var date3=date2.getTime()-new Date(date1).getTime();var days=Math.floor(date3/(24*3600*1000));if(days>=365){document.getElementById("warn").innerHTML=content};
+content="本文最后更新于2020-06-01，已超过 1 年没有更新，涉及的内容可能已经失效！";var date1="2020-06-01 21:26:04";date1=date1.replace("-","/");var date2=new Date();var date3=date2.getTime()-new Date(date1).getTime();var days=Math.floor(date3/(24*3600*1000));if(days>=365){document.getElementById("warn").innerHTML=content};
 </script>
 <style>#magnifyImg{position:fixed;left:0;top:0;text-align:center;width:100%;display:none;z-index:9999}#magnifyImg img{object-fit:contain;background:#eaecef;padding:15px;border-radius:10px;height:auto;width:auto;vertical-align:middle}</style>
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/yguilai"title="github"><i class="iconfont icon-github"></i></a></div></div><div class="copyright"id="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>&nbsp;&nbsp;<a href="#" target="_blank">湘ICP备18009312号-3</a>Copyright © 2018-2020 <a href="https://blog.yguilai.com" style="margin:0;">燕归来博客</a>.</div>

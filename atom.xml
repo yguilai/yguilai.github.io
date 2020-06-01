@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.yguilai.com</id>
     <title>燕归来博客</title>
-    <updated>2020-05-27T07:45:23.378Z</updated>
+    <updated>2020-06-01T13:37:56.611Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.yguilai.com"/>
     <link rel="self" href="https://blog.yguilai.com/atom.xml"/>
@@ -10,6 +10,59 @@
     <logo>https://blog.yguilai.com/images/avatar.png</logo>
     <icon>https://blog.yguilai.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 燕归来博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Typescript中补充的六个类型]]></title>
+        <id>https://blog.yguilai.com/post/zpYjIzrB_/</id>
+        <link href="https://blog.yguilai.com/post/zpYjIzrB_/">
+        </link>
+        <updated>2020-06-01T13:26:04.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h4 id="元组">元组</h4>
+<ul>
+<li>元组可以看作是数组的拓展, 它表示已知的元素数量和类型的数组</li>
+<li>通过<code>let tuple: [string, number, boolean]</code>的方式定义</li>
+<li>各个位置上的元素类型都要对应, 元素个数也要一致</li>
+</ul>
+<h4 id="枚举">枚举</h4>
+<ul>
+<li>ts在es原有类型鸡出上加入枚举类型</li>
+</ul>
+<h4 id="any">Any</h4>
+<ul>
+<li>程序有时是多变的, 有时我们在编写代码时并不能清楚的知道一个值到底时什么类型, 这个时候就需要用到any类型, eg: <code>let dom: any = document.getElementById('myId')</code></li>
+<li>可以在定义数组类型时使用any来指定数组中的元素类型为任意类型</li>
+<li>不应该滥用any类型, 如果任何值都指定为any类型, 那么typescript就变成了&quot;anyscript&quot;😂</li>
+</ul>
+<h4 id="void">void</h4>
+<ul>
+<li>void和any相反, any表示任意类型, void则是表示没有任意类型</li>
+<li>定义函数, 没有返回值时常用到</li>
+<li>void类型的变量只能赋值为<code>undefined</code>和<code>null</code></li>
+</ul>
+<h4 id="nerver">nerver</h4>
+<ul>
+<li>never类型指那些永不存在的类型</li>
+<li>除它自身外, 任何类型都不能赋值给never类型</li>
+</ul>
+<h4 id="unknown">unknown</h4>
+<ul>
+<li>unknown和any很像, 但是unknown相对与any是安全的</li>
+</ul>
+<h4 id="拓展类型">拓展类型</h4>
+<ul>
+<li>交叉类型
+<ul>
+<li>使用<code>&amp;</code>符号定义, 被<code>&amp;</code>符号链接的多个类型构成一个交叉类型</li>
+</ul>
+</li>
+<li>联合类型
+<ul>
+<li>联合类型是要求是要符合联合类型中任意一种类型即可, 使用<code>|</code>符号定义</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[yarn create react-app 报错文件名、目录名或卷标语法不正确]]></title>
         <id>https://blog.yguilai.com/post/x1hPVO9h_/</id>
