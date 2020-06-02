@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.yguilai.com</id>
     <title>燕归来博客</title>
-    <updated>2020-06-02T11:59:54.293Z</updated>
+    <updated>2020-06-02T13:50:08.069Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.yguilai.com"/>
     <link rel="self" href="https://blog.yguilai.com/atom.xml"/>
@@ -11,7 +11,60 @@
     <icon>https://blog.yguilai.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 燕归来博客</rights>
     <entry>
-        <title type="html"><![CDATA[Typescript泛型约束]]></title>
+        <title type="html"><![CDATA[Typescript之tsconfig.json配置]]></title>
+        <id>https://blog.yguilai.com/post/oiRKwJIS-/</id>
+        <link href="https://blog.yguilai.com/post/oiRKwJIS-/">
+        </link>
+        <updated>2020-06-02T13:28:01.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h3 id="tsconfigjson的可配置项">tsconfig.json的可配置项</h3>
+<pre><code class="language-json">{
+    &quot;compileOnSave&quot;: true,
+    &quot;files&quot;: [],
+    &quot;include&quot;: [],
+    &quot;exclude&quot;: [],
+    &quot;extends&quot;: &quot;&quot;,
+    &quot;compilerOptions&quot;: {}
+}
+</code></pre>
+<h3 id="compileonsave"><code>compileOnSave</code></h3>
+<p><code>compileOnSave</code>的值是<code>true</code>或<code>false</code>. 如果设为<code>true</code>, 在编辑文件保存的时候, 编辑器会根据<code>tsconfig.json</code>的配置重新生成文件.(需要编辑器支持)</p>
+<h3 id="files"><code>files</code></h3>
+<p><code>files</code>可以配置一个数组列表, 里面包含指定文件的相对或绝对路径. 编译器在编译ide时候只会编译包含在files中列出的文件. 如果不指定, 则取决于有没有设置<code>include</code>选项; 如果没有<code>include</code>选项, 则默认会编译根目录以及所有子目录的文件. 这里列出的路径必须是指定文件, 而不是某个文件夹, 而且不能使用<code>*</code>、<code>?</code>、<code>**/</code>等通配符</p>
+<h3 id="include"><code>include</code></h3>
+<p>指定要编译的路径列表，但和 files 的区别在于，这里的路径可以是文件夹，也可以是文件，可以使<br>
+用相对和绝对路径，而且可以使用通配符. 比如 &quot;./src&quot; 即表示要编译 src 文件夹下的所有文件以及子文件夹的文件.</p>
+<h3 id="exclude"><code>exclude</code></h3>
+<p>表示要排除的、不编译的文件，它也可以指定一个列表，规则和 include 一样，可以是文件可以是文件夹, 可以是相对路径或绝对路径，可以使用通配符.</p>
+<h3 id="extends"><code>extends</code></h3>
+<p>通过指定一个其它的 tsconfig.json 文件路径，来继承这个配置文件里的配置，继承来的文件配置会覆<br>
+盖当前文件定义的配置. TS在 3.2版本开始，支持继承一个来自 Node.js包的tsconfig.json 配置文件.</p>
+<h3 id="compileroptions"><code>compilerOptions</code></h3>
+<p>包含很多可配置项, 用来设置编译选项.</p>
+<ul>
+<li>
+<p>target<br>
+用于指定编译之后的版本目标, 可选值有: <code>ES3（默认值）</code>、<code>ES5</code>、<code>ES2015</code>、<code>ES2016</code>、<code>ES2017</code>、<code>ESNEXT</code>. 如果不配置, 则默认使用ES3版本, 如果设为ESNEXT, 则使用最新的ES规范版本.</p>
+</li>
+<li>
+<p>module<br>
+用于指定要使用的模块标准, 可选值: <code>commonjs</code>、<code>amd</code>、<code>system</code>、<code>umd</code>、<code>s2015(或写 es6)</code>. 如果不设置module选项, 则判断<code>target</code>选项, 如果<code>target</code>渲染设为<code>ES6</code>, 则module默认为<code>ES6</code>, 否则就是<code>commonjs</code></p>
+</li>
+<li>
+<p>lib<br>
+用于指定要包含在编译中的库文件, 如果你要使用一些ES6的新语法, 则需要引入ES6/ES2015这个库, 如果没有指定 lib 配置，默认会加载一些库，而加载什么库是受 target 影响的。如果 target 为ES5，默认包含的库有 DOM、 ES5 和 ScriptHost ；如果 target 是 ES6，默认引入的库有DOM、ES6、DOM.Iterable 和 ScriptHost.</p>
+</li>
+<li>
+<p>allowJs<br>
+allowJs 设置的值为 true 或 false，用来指定是否允许编译 JS 文件，默认是 false，即不编译 JS 文件.</p>
+</li>
+</ul>
+<hr>
+<p>未完待续...</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Typescript之泛型约束]]></title>
         <id>https://blog.yguilai.com/post/ZUto8nM6t/</id>
         <link href="https://blog.yguilai.com/post/ZUto8nM6t/">
         </link>
@@ -55,7 +108,7 @@ getProp(obj, 'c')   // 类型“&quot;c&quot;”的参数不能赋给类型“&q
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Typescript中的类型断言]]></title>
+        <title type="html"><![CDATA[Typescript之类型断言]]></title>
         <id>https://blog.yguilai.com/post/Zwy9o_K7j/</id>
         <link href="https://blog.yguilai.com/post/Zwy9o_K7j/">
         </link>
@@ -76,7 +129,7 @@ getProp(obj, 'c')   // 类型“&quot;c&quot;”的参数不能赋给类型“&q
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Typescript中补充的六个类型]]></title>
+        <title type="html"><![CDATA[Typescript之ts补充的六个类型]]></title>
         <id>https://blog.yguilai.com/post/zpYjIzrB_/</id>
         <link href="https://blog.yguilai.com/post/zpYjIzrB_/">
         </link>

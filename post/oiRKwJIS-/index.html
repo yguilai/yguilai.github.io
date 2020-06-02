@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="https://blog.yguilai.com/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content="温故而知新"><meta charset="UTF-8"><title>友链 | 燕归来博客</title>
+<link rel="shortcut icon" href="https://blog.yguilai.com/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content="温故而知新"><meta charset="UTF-8"><title>Typescript之tsconfig.json配置 | 燕归来博客</title>
 <link href="https://blog.yguilai.com/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://blog.yguilai.com/media/css/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://blog.yguilai.com/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 <script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
 
-<link rel="canonical" href="https://blog.yguilai.com/post/links/" />
+<link rel="canonical" href="https://blog.yguilai.com/post/oiRKwJIS-/" />
 </head>
 <body>
 <div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
@@ -23,20 +23,81 @@
 
 <div class="main"><div class="main-inner"><div class="content">
 <article class="post">
-<h2 class="post_title sm_margin"><a>友链</a></h2>
+<h2 class="post_title sm_margin"><a>Typescript之tsconfig.json配置</a></h2>
 <script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
-<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-05-19</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px"></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">8字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">1 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-06-02</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://blog.yguilai.com/tag/nh-9Ei0Bc/" class="tag">ts</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">685字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">3 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
 </section>
 
 <div style="display:flex">
 <div class="md_block" id="md_block">
 <div class="round-shape-one"></div>
-<p><a href="https://251.wiki" target="_blank">移动的锦旗 -叶十三</a></p>
+<!-- more -->
+<h3 id="tsconfigjson的可配置项">tsconfig.json的可配置项</h3>
+<pre><code class="language-json">{
+    &quot;compileOnSave&quot;: true,
+    &quot;files&quot;: [],
+    &quot;include&quot;: [],
+    &quot;exclude&quot;: [],
+    &quot;extends&quot;: &quot;&quot;,
+    &quot;compilerOptions&quot;: {}
+}
+</code></pre>
+<h3 id="compileonsave"><code>compileOnSave</code></h3>
+<p><code>compileOnSave</code>的值是<code>true</code>或<code>false</code>. 如果设为<code>true</code>, 在编辑文件保存的时候, 编辑器会根据<code>tsconfig.json</code>的配置重新生成文件.(需要编辑器支持)</p>
+<h3 id="files"><code>files</code></h3>
+<p><code>files</code>可以配置一个数组列表, 里面包含指定文件的相对或绝对路径. 编译器在编译ide时候只会编译包含在files中列出的文件. 如果不指定, 则取决于有没有设置<code>include</code>选项; 如果没有<code>include</code>选项, 则默认会编译根目录以及所有子目录的文件. 这里列出的路径必须是指定文件, 而不是某个文件夹, 而且不能使用<code>*</code>、<code>?</code>、<code>**/</code>等通配符</p>
+<h3 id="include"><code>include</code></h3>
+<p>指定要编译的路径列表，但和 files 的区别在于，这里的路径可以是文件夹，也可以是文件，可以使<br>
+用相对和绝对路径，而且可以使用通配符. 比如 &quot;./src&quot; 即表示要编译 src 文件夹下的所有文件以及子文件夹的文件.</p>
+<h3 id="exclude"><code>exclude</code></h3>
+<p>表示要排除的、不编译的文件，它也可以指定一个列表，规则和 include 一样，可以是文件可以是文件夹, 可以是相对路径或绝对路径，可以使用通配符.</p>
+<h3 id="extends"><code>extends</code></h3>
+<p>通过指定一个其它的 tsconfig.json 文件路径，来继承这个配置文件里的配置，继承来的文件配置会覆<br>
+盖当前文件定义的配置. TS在 3.2版本开始，支持继承一个来自 Node.js包的tsconfig.json 配置文件.</p>
+<h3 id="compileroptions"><code>compilerOptions</code></h3>
+<p>包含很多可配置项, 用来设置编译选项.</p>
+<ul>
+<li>
+<p>target<br>
+用于指定编译之后的版本目标, 可选值有: <code>ES3（默认值）</code>、<code>ES5</code>、<code>ES2015</code>、<code>ES2016</code>、<code>ES2017</code>、<code>ESNEXT</code>. 如果不配置, 则默认使用ES3版本, 如果设为ESNEXT, 则使用最新的ES规范版本.</p>
+</li>
+<li>
+<p>module<br>
+用于指定要使用的模块标准, 可选值: <code>commonjs</code>、<code>amd</code>、<code>system</code>、<code>umd</code>、<code>s2015(或写 es6)</code>. 如果不设置module选项, 则判断<code>target</code>选项, 如果<code>target</code>渲染设为<code>ES6</code>, 则module默认为<code>ES6</code>, 否则就是<code>commonjs</code></p>
+</li>
+<li>
+<p>lib<br>
+用于指定要包含在编译中的库文件, 如果你要使用一些ES6的新语法, 则需要引入ES6/ES2015这个库, 如果没有指定 lib 配置，默认会加载一些库，而加载什么库是受 target 影响的。如果 target 为ES5，默认包含的库有 DOM、 ES5 和 ScriptHost ；如果 target 是 ES6，默认引入的库有DOM、ES6、DOM.Iterable 和 ScriptHost.</p>
+</li>
+<li>
+<p>allowJs<br>
+allowJs 设置的值为 true 或 false，用来指定是否允许编译 JS 文件，默认是 false，即不编译 JS 文件.</p>
+</li>
+</ul>
+<hr>
+<p>未完待续...</p>
 
 <span id="footnote"></span>
 <div id = "warn"></div>
 </div>
-<div class="toc-container"></div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#tsconfigjson%E7%9A%84%E5%8F%AF%E9%85%8D%E7%BD%AE%E9%A1%B9">tsconfig.json的可配置项</a></li>
+<li><a href="#compileonsave"><code>compileOnSave</code></a></li>
+<li><a href="#files"><code>files</code></a></li>
+<li><a href="#include"><code>include</code></a></li>
+<li><a href="#exclude"><code>exclude</code></a></li>
+<li><a href="#extends"><code>extends</code></a></li>
+<li><a href="#compileroptions"><code>compilerOptions</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="fullPage"><canvas id="canvas"></canvas></div>
 </article>
@@ -53,7 +114,7 @@ if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop)
 var list=document.querySelectorAll(".katex");for(var i=0;i<list.length;i++){list[i].style.display="unset"};
 var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
 var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
-content="本文最后更新于2020-05-19，已超过 1 年没有更新，涉及的内容可能已经失效！";var date1="2020-05-19 15:21:38";date1=date1.replace("-","/");var date2=new Date();var date3=date2.getTime()-new Date(date1).getTime();var days=Math.floor(date3/(24*3600*1000));if(days>=365){document.getElementById("warn").innerHTML=content};
+content="本文最后更新于2020-06-02，已超过 1 年没有更新，涉及的内容可能已经失效！";var date1="2020-06-02 21:28:01";date1=date1.replace("-","/");var date2=new Date();var date3=date2.getTime()-new Date(date1).getTime();var days=Math.floor(date3/(24*3600*1000));if(days>=365){document.getElementById("warn").innerHTML=content};
 </script>
 <style>#magnifyImg{position:fixed;left:0;top:0;text-align:center;width:100%;display:none;z-index:9999}#magnifyImg img{object-fit:contain;background:#eaecef;padding:15px;border-radius:10px;height:auto;width:auto;vertical-align:middle}</style>
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/yguilai"title="github"><i class="iconfont icon-github"></i></a></div></div><div class="copyright"id="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>&nbsp;&nbsp;<a href="#" target="_blank">湘ICP备18009312号-3</a>Copyright © 2018-2020 <a href="https://blog.yguilai.com" style="margin:0;">燕归来博客</a>.</div>
