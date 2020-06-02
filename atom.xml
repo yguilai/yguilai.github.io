@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.yguilai.com</id>
     <title>燕归来博客</title>
-    <updated>2020-06-01T13:37:56.611Z</updated>
+    <updated>2020-06-02T11:59:54.293Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.yguilai.com"/>
     <link rel="self" href="https://blog.yguilai.com/atom.xml"/>
@@ -10,6 +10,71 @@
     <logo>https://blog.yguilai.com/images/avatar.png</logo>
     <icon>https://blog.yguilai.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 燕归来博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Typescript泛型约束]]></title>
+        <id>https://blog.yguilai.com/post/ZUto8nM6t/</id>
+        <link href="https://blog.yguilai.com/post/ZUto8nM6t/">
+        </link>
+        <updated>2020-06-02T11:46:41.000Z</updated>
+        <summary type="html"><![CDATA[<p>泛型约束就是使用一个类型和extends对泛型进行约束</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>泛型约束就是使用一个类型和extends对泛型进行约束</p>
+<!-- more -->
+<h3 id="泛型约束">泛型约束</h3>
+<p>例子:</p>
+<pre><code class="language-ts">interface WithLength {
+    length: number
+}
+const getLength = &lt;T extends WithLength&gt;(param: T): number =&gt; {
+    return param.length
+}
+getLength(&quot;abcdefg&quot;)    // 7
+getLength([1, 2, 3])        // 3
+getLength({ length: 5 }) // 5
+getLength(123)             // error 类型“123”的参数不能赋给类型“WithLength”的参数
+</code></pre>
+<p>从上述例子可以看到, 泛型变量<code>T</code>受到接口<code>WithLenght</code>的约束, 不管它是什么类型, 但必须有一个length属性.</p>
+<h3 id="泛型约束中使用类型参数">泛型约束中使用类型参数</h3>
+<p>例子:</p>
+<pre><code class="language-ts">const getProp = (obj, propName) =&gt; {
+    return obj[propName]
+}
+const obj = { a: 'aaa', b: 'bbb' }
+getProp(obj, 'c')   // undefined
+</code></pre>
+<p>从上面这个例子可以看出, 当获取这个对象的<code>'c'</code>属性时, 就会得到<code>undefined</code>. 这里我们就需要用到索引类型<code>keyof</code>结合泛型来实现对这个问题的检查</p>
+<pre><code class="language-ts">const getProp = &lt;T, K extends keyof T&gt;(obj: T, propName: K) =&gt; {
+    return obj[propName]
+}
+const obj = { a: 'aaa', b: 'bbb' }
+getProp(obj, 'c')   // 类型“&quot;c&quot;”的参数不能赋给类型“&quot;a&quot; | &quot;b&quot;”的参数
+</code></pre>
+<blockquote>
+<p><code>keyof</code>可以理解为一个由泛型变量<code>T</code>的属性名构成的联合类型, 因此<code>K</code>就被约束为了只能时<code>'a'</code>或<code>'b'</code>, 所传入字符串<code>'c'</code>时, ts就会检测出错误</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Typescript中的类型断言]]></title>
+        <id>https://blog.yguilai.com/post/Zwy9o_K7j/</id>
+        <link href="https://blog.yguilai.com/post/Zwy9o_K7j/">
+        </link>
+        <updated>2020-06-01T13:48:50.000Z</updated>
+        <summary type="html"><![CDATA[<p>两种写法, 一种是<code>&lt;type&gt;value</code>, 一种是<code>value as type</code></p>
+]]></summary>
+        <content type="html"><![CDATA[<p>两种写法, 一种是<code>&lt;type&gt;value</code>, 一种是<code>value as type</code></p>
+<!-- more -->
+<p>例子:</p>
+<pre><code class="language-typescript">const getStrLength = (target: string | number): number =&gt; {
+    if ((&lt;string&gt;targer).length) {  // 这种写法在jsx中不支持, 同时也是tslint不建议的写法
+        return (target as string).length    // 建议写法
+    } else {
+        return target.toString().length
+    }
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Typescript中补充的六个类型]]></title>
         <id>https://blog.yguilai.com/post/zpYjIzrB_/</id>

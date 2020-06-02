@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="https://blog.yguilai.com/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content="温故而知新"><meta charset="UTF-8"><title>yarn create react-app 报错文件名、目录名或卷标语法不正确 | 燕归来博客</title>
+<link rel="shortcut icon" href="https://blog.yguilai.com/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content="温故而知新"><meta charset="UTF-8"><title>Typescript泛型约束 | 燕归来博客</title>
 <link href="https://blog.yguilai.com/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://blog.yguilai.com/media/css/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://blog.yguilai.com/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 <script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
 
-<link rel="canonical" href="https://blog.yguilai.com/post/x1hPVO9h_/" />
+<link rel="canonical" href="https://blog.yguilai.com/post/ZUto8nM6t/" />
 </head>
 <body>
 <div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
@@ -23,40 +23,65 @@
 
 <div class="main"><div class="main-inner"><div class="content">
 <article class="post">
-<h2 class="post_title sm_margin"><a>yarn create react-app 报错文件名、目录名或卷标语法不正确</a></h2>
+<h2 class="post_title sm_margin"><a>Typescript泛型约束</a></h2>
 <script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
-<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-05-27</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://blog.yguilai.com/tag/L4GVqbVyn/" class="tag">yarn</a> | 	<a href="https://blog.yguilai.com/tag/6XQoZCHJLu/" class="tag">react</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">207字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">1 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-06-02</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://blog.yguilai.com/tag/nh-9Ei0Bc/" class="tag">ts</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">308字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">2 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
 </section>
 
 <div style="display:flex">
 <div class="md_block" id="md_block">
 <div class="round-shape-one"></div>
-<p>最近学习react, 看官方文档利用yarn新建项目运行<code>yarn create react-app my-app</code>直接报错</p>
+<p>泛型约束就是使用一个类型和extends对泛型进行约束</p>
 <!-- more -->
-<p>看网上解决办法很多都是修改<code>create-react-app.cmd</code>, 然后添加环境变量, 感觉很不<code>优雅</code></p>
-<p>查了很多资料后, 发现主要原因是我用npm全局安装的yarn, 导致yarn的bin目录与安装目录在不同分区🙄</p>
-<p>查看yarn的bin目录</p>
-<pre><code class="language-bash">yarn global bin
+<h3 id="泛型约束">泛型约束</h3>
+<p>例子:</p>
+<pre><code class="language-ts">interface WithLength {
+    length: number
+}
+const getLength = &lt;T extends WithLength&gt;(param: T): number =&gt; {
+    return param.length
+}
+getLength(&quot;abcdefg&quot;)    // 7
+getLength([1, 2, 3])        // 3
+getLength({ length: 5 }) // 5
+getLength(123)             // error 类型“123”的参数不能赋给类型“WithLength”的参数
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://blog.yguilai.com/post-images/1590565038111.png" alt="" loading="lazy"></figure>
-<p>查看yarn的安装目录</p>
-<pre><code class="language-bash">yarn global dir
+<p>从上述例子可以看到, 泛型变量<code>T</code>受到接口<code>WithLenght</code>的约束, 不管它是什么类型, 但必须有一个length属性.</p>
+<h3 id="泛型约束中使用类型参数">泛型约束中使用类型参数</h3>
+<p>例子:</p>
+<pre><code class="language-ts">const getProp = (obj, propName) =&gt; {
+    return obj[propName]
+}
+const obj = { a: 'aaa', b: 'bbb' }
+getProp(obj, 'c')   // undefined
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="https://blog.yguilai.com/post-images/1590565172092.png" alt="" loading="lazy"></figure>
+<p>从上面这个例子可以看出, 当获取这个对象的<code>'c'</code>属性时, 就会得到<code>undefined</code>. 这里我们就需要用到索引类型<code>keyof</code>结合泛型来实现对这个问题的检查</p>
+<pre><code class="language-ts">const getProp = &lt;T, K extends keyof T&gt;(obj: T, propName: K) =&gt; {
+    return obj[propName]
+}
+const obj = { a: 'aaa', b: 'bbb' }
+getProp(obj, 'c')   // 类型“&quot;c&quot;”的参数不能赋给类型“&quot;a&quot; | &quot;b&quot;”的参数
+</code></pre>
 <blockquote>
-<p>这里是我已经修改了的, 原来是在C盘</p>
+<p><code>keyof</code>可以理解为一个由泛型变量<code>T</code>的属性名构成的联合类型, 因此<code>K</code>就被约束为了只能时<code>'a'</code>或<code>'b'</code>, 所传入字符串<code>'c'</code>时, ts就会检测出错误</p>
 </blockquote>
-<p>如果发现bin目录与安装目录不在同一个分区, 就将yarn的安装位置修改到同一分区</p>
-<pre><code class="language-bash">yarn config set global-folder &quot;D:\Develop\yarn\global&quot;
-yarn config set cache-folder &quot;D:\Develop\yarn\cache&quot;
-</code></pre>
-<figure data-type="image" tabindex="3"><img src="https://blog.yguilai.com/post-images/1590565331006.png" alt="" loading="lazy"></figure>
-<p>再运行<code>yarn create react-app my-app</code>可以发现已经搞定了👌</p>
 
 <span id="footnote"></span>
 <div id = "warn"></div>
 </div>
-<div class="toc-container"></div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E6%B3%9B%E5%9E%8B%E7%BA%A6%E6%9D%9F">泛型约束</a></li>
+<li><a href="#%E6%B3%9B%E5%9E%8B%E7%BA%A6%E6%9D%9F%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0">泛型约束中使用类型参数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="fullPage"><canvas id="canvas"></canvas></div>
 </article>
@@ -73,7 +98,7 @@ if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop)
 var list=document.querySelectorAll(".katex");for(var i=0;i<list.length;i++){list[i].style.display="unset"};
 var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
 var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
-content="本文最后更新于2020-05-27，已超过 1 年没有更新，涉及的内容可能已经失效！";var date1="2020-05-27 15:29:09";date1=date1.replace("-","/");var date2=new Date();var date3=date2.getTime()-new Date(date1).getTime();var days=Math.floor(date3/(24*3600*1000));if(days>=365){document.getElementById("warn").innerHTML=content};
+content="本文最后更新于2020-06-02，已超过 1 年没有更新，涉及的内容可能已经失效！";var date1="2020-06-02 19:46:41";date1=date1.replace("-","/");var date2=new Date();var date3=date2.getTime()-new Date(date1).getTime();var days=Math.floor(date3/(24*3600*1000));if(days>=365){document.getElementById("warn").innerHTML=content};
 </script>
 <style>#magnifyImg{position:fixed;left:0;top:0;text-align:center;width:100%;display:none;z-index:9999}#magnifyImg img{object-fit:contain;background:#eaecef;padding:15px;border-radius:10px;height:auto;width:auto;vertical-align:middle}</style>
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/yguilai"title="github"><i class="iconfont icon-github"></i></a></div></div><div class="copyright"id="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>&nbsp;&nbsp;<a href="#" target="_blank">湘ICP备18009312号-3</a>Copyright © 2018-2020 <a href="https://blog.yguilai.com" style="margin:0;">燕归来博客</a>.</div>
