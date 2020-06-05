@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.yguilai.com</id>
     <title>燕归来博客</title>
-    <updated>2020-06-02T13:50:08.069Z</updated>
+    <updated>2020-06-05T09:07:40.716Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.yguilai.com"/>
     <link rel="self" href="https://blog.yguilai.com/atom.xml"/>
@@ -10,6 +10,116 @@
     <logo>https://blog.yguilai.com/images/avatar.png</logo>
     <icon>https://blog.yguilai.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 燕归来博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Typescript之封装Axios]]></title>
+        <id>https://blog.yguilai.com/post/ojQKZXlfE/</id>
+        <link href="https://blog.yguilai.com/post/ojQKZXlfE/">
+        </link>
+        <updated>2020-06-05T08:50:48.000Z</updated>
+        <content type="html"><![CDATA[<p>直接上代码</p>
+<h4 id="安装依赖">安装依赖</h4>
+<pre><code class="language-bash">yarn add axios # 或者 npm install axios -S
+</code></pre>
+<h4 id="encapsulation">Encapsulation</h4>
+<pre><code class="language-ts">// config/index.ts
+export default {
+  api: {
+    devApiBaseUrl: '/',             // 开发环境base url
+    proApiBaseUrl: '/api/v1'   // 生产环境base url
+  }
+}
+</code></pre>
+<pre><code class="language-ts">// utils/request.ts
+import axios, {AxiosInstance, AxiosRequestConfig, AxiosPromise, AxiosResponse} from 'axios'
+import config from '@/config'
+
+const {api: {devApiBaseUrl, proApiBaseUrl}} = config
+const apiBaseUrl = process.env.NODE_ENV === 'production' ? proApiBaseUrl : devApiBaseUrl
+
+// 修改默认的content-type
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+
+/**
+ * 统一返回的数据格式, 根据具体业务修改
+ */
+export interface ResponseData {
+  code: number
+  msg: string
+  data?: any
+}
+
+class HttpRequest {
+  constructor(public baseUrl: string = apiBaseUrl) {
+    this.baseUrl = baseUrl
+  }
+
+  public request(options: AxiosRequestConfig): AxiosPromise {
+    const instance: AxiosInstance = axios.create()
+    options = this.mergeConfig(options)
+    this.interceptors(instance, options.url)
+    return instance(options)
+  }
+
+  /**
+   * 配置拦截器
+   * @param instance
+   * @param url
+   */
+  private interceptors(instance: AxiosInstance, url?: string) {
+    instance.interceptors.request.use((config: AxiosRequestConfig) =&gt; {
+      // 可以在这配置token 请求头
+      return config
+    }, error =&gt; Promise.reject(error))
+
+    instance.interceptors.response.use((res: AxiosResponse) =&gt; {
+      const {data} = res
+      const {code, msg} = data
+      // 这里设置返回状态码为0表示成功, 请根据具体业务修改
+      if (code !== 0) {
+        // TODO 使用消息窗提示错误
+        console.error(msg)
+      }
+      return res
+    }, error =&gt; Promise.reject(error))
+  }
+
+  /**
+   * 合并基础配置
+   * @param options
+   */
+  private mergeConfig(options: AxiosRequestConfig): AxiosRequestConfig {
+    return Object.assign({baseURL: this.baseUrl}, options)
+  }
+}
+
+export default HttpRequest
+</code></pre>
+<h4 id="how-to-use">How to use</h4>
+<pre><code class="language-ts">// api/index.ts
+import HttpRequest from &quot;@/utils/request&quot;
+export * from '@/utils/request'
+export default new HttpRequest()
+</code></pre>
+<pre><code class="language-ts">// api/user.ts
+import axios, {ResponseData} from './index'
+import {AxiosPromise} from 'axios'
+
+interface LoginReqArgInterface {
+  username: string
+  password: number | string
+}
+
+// 传入泛型变量ResponseData, 可以在操作返回结果集时, 获得代码提示
+export const loginApi = (data: LoginReqArgInterface): AxiosPromise&lt;ResponseData&gt; =&gt; {
+  return axios.request({
+    url: '/user/login',
+    data,
+    method: 'POST'
+  })
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Typescript之tsconfig.json配置]]></title>
         <id>https://blog.yguilai.com/post/oiRKwJIS-/</id>
