@@ -8,7 +8,7 @@
 <meta name="keywords" content="燕归来博客">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>燕归来博客</title>
+<title>Go实现通用二分搜索树 | 燕归来博客</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1593784753447">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/pisces.css">
@@ -29,6 +29,8 @@
 
 
 
+  <meta name="description" content="Go实现通用二分搜索树" />
+  <meta name="keywords" content="Go,数据结构,二分搜索树" />
 </head>
 
 <body>
@@ -90,7 +92,7 @@
             
               
             
-            <li class="nav-item nav-item-active">
+            <li class="nav-item ">
               
               
                 <a href="/tags/" target="_self">
@@ -141,10 +143,25 @@
   <div class="main-continer">
     
     <div
-      class="section-layout  pisces">
+      class="section-layout pisces ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body pisces" id="sidebar_body">
+        
+          
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -195,468 +212,194 @@
 
 
 </div>
-</div>
-<script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'pisces';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
-      }
-    });
-  }
-  </script>
-        <div class="section-box box-shadow-wrapper">
-          <section class="section tags-section bg-color posts-expand">
-            <div class="tags-box">
-  <div class="tag-cloud-title">
-    目前共计 7 个标签
-  </div>
-  <div class="tag-cloud-list" id="tags">
-    
-      
-      
-        
-          
-        
-          
-        
-          
-        
-      
-        
-          
-            
-      
-        
-          
-            
-      
-        
-          
-            
-      
-        
-          
-            
-      
-        
-          
-            
-      
-        
-          
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-          
-        
-      
-        
-      
-        
-      
-      <a class="cloud-tag" href="https://blog.yguilai.com/tag/nh-9Ei0Bc/" rel="5">ts</a>
-    
-      
-      
-        
-          
-        
-          
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-            
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-          
-        
-      
-        
-      
-        
-      
-      <a class="cloud-tag" href="https://blog.yguilai.com/tag/L4GVqbVyn/" rel="1">yarn</a>
-    
-      
-      
-        
-          
-        
-          
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-          
-            
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-          
-        
-      
-        
-      
-        
-      
-      <a class="cloud-tag" href="https://blog.yguilai.com/tag/6XQoZCHJLu/" rel="1">react</a>
-    
-      
-      
-        
-          
-        
-          
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-          
-        
-      
-        
-          
-            
-      
-        
-          
-        
-      
-        
-          
-        
-          
-        
-      
-        
-      
-        
-      
-      <a class="cloud-tag" href="https://blog.yguilai.com/tag/zixpeIzkI/" rel="1">Win10</a>
-    
-      
-      
-        
-          
-            
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-            
-      
-        
-          
-        
-          
-        
-      
-        
-      
-        
-      
-      <a class="cloud-tag" href="https://blog.yguilai.com/tag/uZJZ6ZL0L/" rel="2">Go</a>
-    
-      
-      
-        
-          
-        
-          
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-            
-      
-        
-      
-        
-      
-      <a class="cloud-tag" href="https://blog.yguilai.com/tag/IaCuVJ50X/" rel="1">vue</a>
-    
-      
-      
-        
-          
-        
-          
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
           
-        
-      
-        
-          
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-          
-            
-      
-        
-      
         
-      
-      <a class="cloud-tag" href="https://blog.yguilai.com/tag/MUM54ZIS_o/" rel="1">elementui</a>
-    
-  </div>
-</div>
-<script>
-
-  let fontStart = 12, fontEnd = 30, colorStart = '#666', colorEnd = '#000';
-  let tags = document.querySelector('#tags').children;
-  let counts = [];
-  for(let i = 0; i < tags.length; i++) {
-    counts.push(tags[i].rel);
-  }
-  let lowest = Math.min.apply(null,counts), highest = Math.max.apply(null,counts);;
-  let range = highest - lowest;
-  if (range === 0) {
-    range = 1;
-  }
-  let fontIncr, colorIncr;
-  fontIncr = (fontEnd - fontStart) / range;
+      </div>
+    </div>
   
-  let sColorArr = toRGB(colorStart), eColorArr = toRGB(colorEnd);
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
 
-  for(let i = 0; i < tags.length; i++) {
-    let disCount = tags[i].rel - lowest;
-    let fontSize = fontStart + disCount * fontIncr;
-    let style = 'font-size: ' + fontSize + 'px;';
-    let arr = [];
-    for(let c = 0; c < sColorArr.length; c++) {
-      if (disCount === 0) {
-        disCount = 1;
-      }
-      let val = (sColorArr[c] - eColorArr[c]) / range * disCount;
-      if (val >= 100) {
-        val = eColorArr[c];
-      } else if (val <= 0) {
-        val = sColorArr[c];
-      }
-      arr[c] = Math.floor(val);
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
     }
-    style += 'color: ' + toHex(arr);
-    tags[i].style = style;
-  }
-
-  function toRGB(code) {
-    if (code.length === 4) {
-      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
     }
-    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
-    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
   }
 
-  function toHex(ary) {
-    return "#" + ((1 << 24) + (ary[0] << 16) + (ary[1] << 8) + ary[2]).toString(16).slice(1);
-  }
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
 
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
 </script>
-          </section>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <header class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://blog.yguilai.com/post/GnEBXyyBU/">
+      Go实现通用二分搜索树
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span>发布于</span>
+      <span>2020-07-03</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show">分类于</span>
+      
+      
+      <a href="https://blog.yguilai.com/tag/uZJZ6ZL0L/">
+        <span>Go</span>
+      </a>、
+      
+      
+      
+      <a href="https://blog.yguilai.com/tag/siL51d4uk/">
+        <span>数据结构</span>
+      </a>、
+      
+      
+      
+      <a href="https://blog.yguilai.com/tag/DvccTPZSjg/">
+        <span>二分搜索树</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>1分钟</span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>59<span class="pc-show">字数</span></span>
+    </span>
+    
+  </div>
+</header>
+            <div class="post-body next-md-body" id="post_body">
+              <ul>
+<li>二分搜索树是二叉树</li>
+<li>二分搜索树的每个节点的值:
+<ul>
+<li>大于其左子树的所有节点的值</li>
+<li>小于其右子树的所有节点的值</li>
+</ul>
+</li>
+<li>每一棵子树也是二分搜索树</li>
+</ul>
+<!-- more -->
+
+            </div>
+            <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      燕归来
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.yguilai.com/post/GnEBXyyBU/" title="Go实现通用二分搜索树">https://blog.yguilai.com/post/GnEBXyyBU/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+      <a href="https://blog.yguilai.com/tag/uZJZ6ZL0L/"># Go</a>
+    
+      <a href="https://blog.yguilai.com/tag/siL51d4uk/"># 数据结构</a>
+    
+      <a href="https://blog.yguilai.com/tag/DvccTPZSjg/"># 二分搜索树</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+    </div>
+    <div class="nav-next">
+      
+    </div>
+  </div>
+</div>
+            
+  
+
+          </div>
         </div>
       </div>
     </div>
@@ -826,6 +569,36 @@
   // 代码高亮
   hljs.initHighlightingOnLoad();
 
+</script>
+    <div class="light-box" id="light_box"></div>
+<script>
+  let imgs = document.querySelectorAll('.post-body img');
+  let lightBox = document.querySelector('#light_box');
+  lightBox.addEventListener('mousedown', (e) => {
+    e.preventDefault()
+  })
+  lightBox.addEventListener('mousewheel', (e) => {
+    e.preventDefault()
+  })
+  let width = window.innerWidth * 0.8;
+  lightBox.onclick = () => {
+    let img = lightBox.querySelector('img');
+    lightBox.style = '';
+    img && img.remove();
+  }
+  imgs.forEach(item => {
+    item.onclick = function (e) {
+      let lightImg = document.createElement('img');
+      lightImg.src = this.src;
+      lightBox.style = `height: 100%; opacity: 1; background-color: rgba(0, 0, 0, 0.5);cursor: zoom-out;`;
+      lightImg.style = `width: ${width}px; border: 1px solid #fff; border-radius: 2px;`;
+      lightImg.onclick = function () {
+        lightBox.style = '';
+        this.remove();
+      }
+      lightBox.append(lightImg);
+    }
+  })
 </script>
   </div>
 </body>
@@ -1527,7 +1300,6 @@ export function uploadImg2Qiniu(formdata) {
 </script> -->
 
 <script src="/media/js/mouse/peace.js"></script>
-
 
 
 </html>
