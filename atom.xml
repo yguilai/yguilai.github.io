@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.yguilai.com</id>
+    <id>https://blog.ygl.plus</id>
     <title>燕归来博客</title>
-    <updated>2020-07-03T14:05:48.021Z</updated>
+    <updated>2020-07-03T14:31:19.652Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://blog.yguilai.com"/>
-    <link rel="self" href="https://blog.yguilai.com/atom.xml"/>
+    <link rel="alternate" href="https://blog.ygl.plus"/>
+    <link rel="self" href="https://blog.ygl.plus/atom.xml"/>
     <subtitle>温故而知新</subtitle>
-    <logo>https://blog.yguilai.com/images/avatar.png</logo>
-    <icon>https://blog.yguilai.com/favicon.ico</icon>
+    <logo>https://blog.ygl.plus/images/avatar.png</logo>
+    <icon>https://blog.ygl.plus/favicon.ico</icon>
     <rights>All rights reserved 2020, 燕归来博客</rights>
     <entry>
         <title type="html"><![CDATA[Typescript之封装Axios]]></title>
-        <id>https://blog.yguilai.com/post/ojQKZXlfE/</id>
-        <link href="https://blog.yguilai.com/post/ojQKZXlfE/">
+        <id>https://blog.ygl.plus/post/ojQKZXlfE/</id>
+        <link href="https://blog.ygl.plus/post/ojQKZXlfE/">
         </link>
         <updated>2020-06-05T08:50:48.000Z</updated>
         <content type="html"><![CDATA[<p>直接上代码</p>
@@ -122,8 +122,8 @@ export const loginApi = (data: LoginReqArgInterface): AxiosPromise&lt;ResponseDa
     </entry>
     <entry>
         <title type="html"><![CDATA[Typescript之tsconfig.json配置]]></title>
-        <id>https://blog.yguilai.com/post/oiRKwJIS-/</id>
-        <link href="https://blog.yguilai.com/post/oiRKwJIS-/">
+        <id>https://blog.ygl.plus/post/oiRKwJIS-/</id>
+        <link href="https://blog.ygl.plus/post/oiRKwJIS-/">
         </link>
         <updated>2020-06-02T13:28:01.000Z</updated>
         <content type="html"><![CDATA[<!-- more -->
@@ -175,8 +175,8 @@ allowJs 设置的值为 true 或 false，用来指定是否允许编译 JS 文�
     </entry>
     <entry>
         <title type="html"><![CDATA[Typescript之泛型约束]]></title>
-        <id>https://blog.yguilai.com/post/ZUto8nM6t/</id>
-        <link href="https://blog.yguilai.com/post/ZUto8nM6t/">
+        <id>https://blog.ygl.plus/post/ZUto8nM6t/</id>
+        <link href="https://blog.ygl.plus/post/ZUto8nM6t/">
         </link>
         <updated>2020-06-02T11:46:41.000Z</updated>
         <summary type="html"><![CDATA[<p>泛型约束就是使用一个类型和extends对泛型进行约束</p>
@@ -219,8 +219,8 @@ getProp(obj, 'c')   // 类型“&quot;c&quot;”的参数不能赋给类型“&q
     </entry>
     <entry>
         <title type="html"><![CDATA[Typescript之类型断言]]></title>
-        <id>https://blog.yguilai.com/post/Zwy9o_K7j/</id>
-        <link href="https://blog.yguilai.com/post/Zwy9o_K7j/">
+        <id>https://blog.ygl.plus/post/Zwy9o_K7j/</id>
+        <link href="https://blog.ygl.plus/post/Zwy9o_K7j/">
         </link>
         <updated>2020-06-01T13:48:50.000Z</updated>
         <summary type="html"><![CDATA[<p>两种写法, 一种是<code>&lt;type&gt;value</code>, 一种是<code>value as type</code></p>
@@ -240,8 +240,8 @@ getProp(obj, 'c')   // 类型“&quot;c&quot;”的参数不能赋给类型“&q
     </entry>
     <entry>
         <title type="html"><![CDATA[Typescript之ts补充的六个类型]]></title>
-        <id>https://blog.yguilai.com/post/zpYjIzrB_/</id>
-        <link href="https://blog.yguilai.com/post/zpYjIzrB_/">
+        <id>https://blog.ygl.plus/post/zpYjIzrB_/</id>
+        <link href="https://blog.ygl.plus/post/zpYjIzrB_/">
         </link>
         <updated>2020-06-01T13:26:04.000Z</updated>
         <content type="html"><![CDATA[<!-- more -->
@@ -293,8 +293,8 @@ getProp(obj, 'c')   // 类型“&quot;c&quot;”的参数不能赋给类型“&q
     </entry>
     <entry>
         <title type="html"><![CDATA[yarn create react-app 报错文件名、目录名或卷标语法不正确]]></title>
-        <id>https://blog.yguilai.com/post/x1hPVO9h_/</id>
-        <link href="https://blog.yguilai.com/post/x1hPVO9h_/">
+        <id>https://blog.ygl.plus/post/x1hPVO9h_/</id>
+        <link href="https://blog.ygl.plus/post/x1hPVO9h_/">
         </link>
         <updated>2020-05-27T07:29:09.000Z</updated>
         <summary type="html"><![CDATA[<p>最近学习react, 看官方文档利用yarn新建项目运行<code>yarn create react-app my-app</code>直接报错</p>
@@ -306,11 +306,11 @@ getProp(obj, 'c')   // 类型“&quot;c&quot;”的参数不能赋给类型“&q
 <p>查看yarn的bin目录</p>
 <pre><code class="language-bash">yarn global bin
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://blog.yguilai.com/post-images/1590565038111.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://blog.ygl.plus/post-images/1590565038111.png" alt="" loading="lazy"></figure>
 <p>查看yarn的安装目录</p>
 <pre><code class="language-bash">yarn global dir
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="https://blog.yguilai.com/post-images/1590565172092.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://blog.ygl.plus/post-images/1590565172092.png" alt="" loading="lazy"></figure>
 <blockquote>
 <p>这里是我已经修改了的, 原来是在C盘</p>
 </blockquote>
@@ -318,14 +318,14 @@ getProp(obj, 'c')   // 类型“&quot;c&quot;”的参数不能赋给类型“&q
 <pre><code class="language-bash">yarn config set global-folder &quot;D:\Develop\yarn\global&quot;
 yarn config set cache-folder &quot;D:\Develop\yarn\cache&quot;
 </code></pre>
-<figure data-type="image" tabindex="3"><img src="https://blog.yguilai.com/post-images/1590565331006.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://blog.ygl.plus/post-images/1590565331006.png" alt="" loading="lazy"></figure>
 <p>再运行<code>yarn create react-app my-app</code>可以发现已经搞定了👌</p>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Win10解决无法调节屏幕亮度问题]]></title>
-        <id>https://blog.yguilai.com/post/TKVP2Etmw/</id>
-        <link href="https://blog.yguilai.com/post/TKVP2Etmw/">
+        <id>https://blog.ygl.plus/post/TKVP2Etmw/</id>
+        <link href="https://blog.ygl.plus/post/TKVP2Etmw/">
         </link>
         <updated>2020-05-20T12:00:17.000Z</updated>
         <summary type="html"><![CDATA[<p>网上找了很多方法, 如: 重装集显驱动、修改注册表, 都没用</p>
@@ -336,14 +336,14 @@ yarn config set cache-folder &quot;D:\Develop\yarn\cache&quot;
 <p>解决办法:<br>
 Win+R打开运行窗口, 输入<code>devmgmt.msc</code>, 回车打开设备管理器面板, 找到监视器</p>
 <p>可以发现监视器驱动显示为<code>PnP-Monitor(Standard)</code> (厂商为TeamViewer) 或者<code>Generic Monitor (orayOPMS)</code>(厂商为向日葵)<br>
-<img src="https://blog.yguilai.com/post-images/1589976540518.jpg" alt="" loading="lazy"></p>
+<img src="https://blog.ygl.plus/post-images/1589976540518.jpg" alt="" loading="lazy"></p>
 <p>右键选中对应驱动, 打开<code>属性</code> &gt; <code>驱动程序</code> &gt; <code>更新驱动程序</code> &gt; <code>浏览计算机以查找驱动程序软件</code> &gt; <code>从计算机的设备驱动程序列表中选取</code> &gt; 选中<code>通用即插即用监视器</code>, 点击下一步安装即可, 最好重启一下电脑</p>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Go日志库Zap与lumberjack配置]]></title>
-        <id>https://blog.yguilai.com/post/L_yuiYNgS/</id>
-        <link href="https://blog.yguilai.com/post/L_yuiYNgS/">
+        <id>https://blog.ygl.plus/post/L_yuiYNgS/</id>
+        <link href="https://blog.ygl.plus/post/L_yuiYNgS/">
         </link>
         <updated>2020-05-19T14:20:02.000Z</updated>
         <content type="html"><![CDATA[<pre><code class="language-go">package core
@@ -442,8 +442,8 @@ func newZapLevel() zap.AtomicLevel {
     </entry>
     <entry>
         <title type="html"><![CDATA[ElementUI自定义上传 -以上传图标到七牛云为例]]></title>
-        <id>https://blog.yguilai.com/post/elementui-zi-ding-yi-shang-chuan-yi-shang-chuan-tu-biao-dao-qi-niu-yun-wei-li/</id>
-        <link href="https://blog.yguilai.com/post/elementui-zi-ding-yi-shang-chuan-yi-shang-chuan-tu-biao-dao-qi-niu-yun-wei-li/">
+        <id>https://blog.ygl.plus/post/elementui-zi-ding-yi-shang-chuan-yi-shang-chuan-tu-biao-dao-qi-niu-yun-wei-li/</id>
+        <link href="https://blog.ygl.plus/post/elementui-zi-ding-yi-shang-chuan-yi-shang-chuan-tu-biao-dao-qi-niu-yun-wei-li/">
         </link>
         <updated>2020-05-19T07:30:51.000Z</updated>
         <summary type="html"><![CDATA[<p>解决ElementUI上传组件无法获取内部文件列表的缺陷</p>
